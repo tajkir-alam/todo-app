@@ -8,7 +8,12 @@ const AllTasks = () => {
 
     return (
         <div className="bg-white rounded p-5 pt-8">
-            <h5 className='text-center text-lg text-[#383670] font-medium tracking-wider mb-5'>All Tasks</h5>
+            <div className='flex justify-between items-center px-2 mb-5'>
+                <h5 className='text-center text-lg text-[#383670] font-medium tracking-wider'>All Tasks</h5>
+                <p className='text-[#383670d5] font-medium tracking-wider'>
+                    You have completed <span className='text-[#383670]'>{tasks.filter(task => task.status === 'completed').length}</span> tasks from <span className='text-[#383670]'>{tasks.length}</span> tasks
+                </p>
+            </div>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-5'>
                 {
                     tasks.slice(0, showAllTasks).map(({ id, taskTitle, taskDescription, status, deadLines, priority }) => (
