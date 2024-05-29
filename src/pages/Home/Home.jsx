@@ -13,10 +13,11 @@ const Home = () => {
 
     return (
         <>
-            <header className='border-b-2 pb-2 px-2'>
+            <header className='border-b-2 py-2 px-2 flex justify-between items-center sticky top-0 bg-[#f0f6ff] z-50'>
                 <h2 className='text-2xl tracking-widest'>Welcome to TODO'S</h2>
+                <button className='bg-white px-5 py-2 rounded-lg text-[#486faa] font-medium tracking-widest'>Add Task</button>
             </header>
-            <main className='mt-5 space-y-3'>
+            <main className='mt-5 space-y-5'>
                 {/* task card */}
                 <IncompletedTasks />
                 

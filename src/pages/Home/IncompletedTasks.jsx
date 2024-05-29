@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import Task from '../../component/Task/Task';
 
 const IncompletedTasks = () => {
-    const tasks = useSelector(state => state.tasks.tasks);
+    const { tasks } = useSelector(state => state.tasks);
     const [showIncompletedTasks, setShowIncompletedTasks] = useState(3)
 
     return (

@@ -3,13 +3,13 @@ import Task from '../../component/Task/Task';
 import { useSelector } from 'react-redux';
 
 const AllTasks = () => {
-    const tasks = useSelector(state => state.tasks.tasks);
+    const { tasks } = useSelector(state => state.tasks);
     const [showAllTasks, setShowAllTasks] = useState(3)
 
     return (
         <div className="bg-white rounded p-5 pt-8">
             <div className='flex justify-between items-center px-2 mb-5'>
-                <h5 className='text-center text-lg text-[#383670] font-medium tracking-wider'>All Tasks</h5>
+                <h5 className='text-center text-xl text-[#383670] font-medium tracking-wider'>All Tasks</h5>
                 <p className='text-[#383670d5] font-medium tracking-wider'>
                     You have completed <span className='text-[#383670]'>{tasks.filter(task => task.status === 'completed').length}</span> tasks from <span className='text-[#383670]'>{tasks.length}</span> tasks
                 </p>

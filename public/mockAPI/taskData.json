@@ -2,7 +2,7 @@
     {
         "id": 2,
         "taskTitle": "Create About Page",
-        "taskDescription": "In this guide, you will see exactly how to use Axios.js",
+        "taskDescription": "In this guide, you will see exactly how to use Axios.js interceptors for baseURL. I will guide you for the library",
         "status": "completed",
         "deadLines": "12/08/24",
         "priority": "Low"
@@ -18,7 +18,7 @@
     {
         "id": 5,
         "taskTitle": "Create Footer",
-        "taskDescription": "Then we'll touch on more advanced features like creating an Axios instance for reusability, ",
+        "taskDescription": "Then we'll touch on more advanced features like creating an Axios instance for reusability, Axios make the CRUD easier",
         "status": "completed",
         "deadLines": "12/08/24",
         "priority": "Medium"
