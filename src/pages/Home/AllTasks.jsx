@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 const AllTasks = () => {
     const { tasks } = useSelector(state => state.tasks);
-    const [showAllTasks, setShowAllTasks] = useState(3)
+    const [showAllTasks, setShowAllTasks] = useState(3);
 
     return (
         <div className="bg-white rounded p-5 pt-8">
