@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { MdOutlineEdit, MdOutlineDelete, MdCheckCircle } from "react-icons/md";
 
 const Task = ({ id, taskTitle, taskDescription, status, deadLines, priority }) => {
-    let completedButton = false;
-    completedButton = status === 'completed' ? true : false;
+    let completedButton = status === 'completed' ? true : false;
 
     return (
         <div className='bg-[#f0f6ff] py-3 px-4 rounded-lg space-y-4'>
@@ -12,7 +11,11 @@ const Task = ({ id, taskTitle, taskDescription, status, deadLines, priority }) =
                 <div className='flex items-center gap-2 text-xl'>
                     <button><MdOutlineEdit className='text-green-500' /></button>
                     <button><MdOutlineDelete className='text-red-500' /></button>
-                    <button disabled={completedButton} className={completedButton && '!scale-100'}><MdCheckCircle className={completedButton ? 'text-gray-400' : 'text-blue-400'} /></button>
+                    {!completedButton &&
+                        <button>
+                            <MdCheckCircle className='text-blue-400' />
+                        </button>
+                    }
                 </div>
             </div>
             <p className='text-[#1f213b]'>{taskDescription}</p>
