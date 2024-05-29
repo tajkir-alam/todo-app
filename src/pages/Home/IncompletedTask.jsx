@@ -1,4 +1,4 @@
-import React, { useEffect, useState }  from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Task from '../../component/Task/Task';
 import { fetchTasks } from '../../redux/features/taskSlice';
@@ -13,7 +13,7 @@ const IncompletedTask = () => {
     }, [dispatch]);
 
     return (
-        <>
+        <div className="bg-white rounded p-5 pt-8">
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-5'>
                 {
                     tasks.filter((task) => task.status === 'in-completed').slice(0, showIncompletedTask).map(({ id, taskTitle, taskDescription, status, deadLines, priority }) => (
@@ -39,7 +39,7 @@ const IncompletedTask = () => {
                         </button>
                 }
             </div>
-        </>
+        </div>
     );
 };
 

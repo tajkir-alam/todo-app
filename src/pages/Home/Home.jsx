@@ -2,7 +2,7 @@ import React from 'react';
 import IncompletedTask from './IncompletedTask';
 
 const Home = () => {
-   
+
 
     return (
         <>
@@ -11,10 +11,8 @@ const Home = () => {
             </header>
             <main className='mt-5 space-y-3'>
                 <h5 className='text-center text-lg text-[#383670] font-medium tracking-wider'>In-completed Task</h5>
-                <div className="bg-white rounded p-5 pt-8">
-                    {/* task card */}
-                   <IncompletedTask />
-                </div>
+                {/* task card */}
+                <IncompletedTask />
             </main>
         </>
     );
