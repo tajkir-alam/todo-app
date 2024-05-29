@@ -1,8 +1,15 @@
-import React from 'react';
-import IncompletedTask from './IncompletedTask';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchTasks } from '../../redux/features/taskSlice';
+import IncompletedTasks from './IncompletedTasks';
+import AllTasks from './AllTasks';
 
 const Home = () => {
+    const dispatch = useDispatch();
 
+    useEffect(() => {
+        dispatch(fetchTasks());
+    }, [dispatch]);
 
     return (
         <>
@@ -10,9 +17,11 @@ const Home = () => {
                 <h2 className='text-2xl tracking-widest'>Welcome to TODO'S</h2>
             </header>
             <main className='mt-5 space-y-3'>
-                <h5 className='text-center text-lg text-[#383670] font-medium tracking-wider'>In-completed Task</h5>
                 {/* task card */}
-                <IncompletedTask />
+                <IncompletedTasks />
+                
+                {/* All Tasks will show via this component */}
+                <AllTasks />
             </main>
         </>
     );

@@ -1,16 +1,9 @@
-import axios from 'axios';
-import React, { useEffect } from 'react';
-import { MdOutlineEdit, MdOutlineDelete } from "react-icons/md";
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchTasks } from '../../redux/features/taskSlice';
+import React, { useState } from 'react';
+import { MdOutlineEdit, MdOutlineDelete, MdCheckCircle } from "react-icons/md";
 
 const Task = ({ id, taskTitle, taskDescription, status, deadLines, priority }) => {
-    const dispatch = useDispatch();
-    const tasks = useSelector(state => state.tasks.tasks);
-
-    useEffect(() => {
-        dispatch(fetchTasks());
-    }, [dispatch]);
+    let completedButton = false;
+    completedButton = status === 'completed' ? true : false;
 
     return (
         <div className='bg-[#f0f6ff] py-3 px-4 rounded-lg space-y-4'>
@@ -19,12 +12,17 @@ const Task = ({ id, taskTitle, taskDescription, status, deadLines, priority }) =
                 <div className='flex items-center gap-2 text-xl'>
                     <button><MdOutlineEdit className='text-green-500' /></button>
                     <button><MdOutlineDelete className='text-red-500' /></button>
+                    <button disabled={completedButton} className={completedButton && '!scale-100'}><MdCheckCircle className={completedButton ? 'text-gray-400' : 'text-blue-400'} /></button>
                 </div>
             </div>
             <p className='text-[#1f213b]'>{taskDescription}</p>
-            <div className='flex items-center justify-between'>
+            <div className='flex items-center justify-between text-sm'>
                 <p className='bg-[#383670] px-5 py-1 rounded-2xl text-white capitalize'>{status}</p>
-                <p className='bg-red-400 px-5 py-1 rounded-2xl text-white font-medium capitalize'>{priority}</p>
+                <p
+                    className={`${priority === 'Low' ? 'bg-red-400' : priority === 'Medium' ? 'bg-red-600' : priority === 'High' ? 'bg-red-800' : ''} px-5 py-1 rounded-2xl text-white font-medium capitalize`}
+                >
+                    {priority}
+                </p>
             </div>
         </div>
     );

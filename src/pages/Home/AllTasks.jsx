@@ -1,38 +1,33 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
 import Task from '../../component/Task/Task';
-import { fetchTasks } from '../../redux/features/taskSlice';
+import { useSelector } from 'react-redux';
 
-const IncompletedTask = () => {
-    const dispatch = useDispatch();
+const AllTasks = () => {
     const tasks = useSelector(state => state.tasks.tasks);
-    const [showIncompletedTask, setShowIncompletedTask] = useState(3)
-
-    useEffect(() => {
-        dispatch(fetchTasks());
-    }, [dispatch]);
+    const [showAllTasks, setShowAllTasks] = useState(3)
 
     return (
         <div className="bg-white rounded p-5 pt-8">
+            <h5 className='text-center text-lg text-[#383670] font-medium tracking-wider mb-5'>All Tasks</h5>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-5'>
                 {
-                    tasks.filter((task) => task.status === 'in-completed').slice(0, showIncompletedTask).map(({ id, taskTitle, taskDescription, status, deadLines, priority }) => (
+                    tasks.slice(0, showAllTasks).map(({ id, taskTitle, taskDescription, status, deadLines, priority }) => (
                         <Task key={id} taskTitle={taskTitle} taskDescription={taskDescription} status={status} deadLines={deadLines} priority={priority} />
                     ))
                 }
             </div>
             <div className='flex justify-end'>
                 {
-                    showIncompletedTask === 3 ?
+                    showAllTasks === 3 ?
                         <button
-                            onClick={() => setShowIncompletedTask(tasks.filter((task) => task.status === 'in-completed').length)}
+                            onClick={() => setShowAllTasks(tasks.length)}
                             className='mt-5 bg-blue-900 hover:bg-blue-700 px-5 py-1 rounded-lg text-white font-medium tracking-wider'
                         >
                             View All
                         </button>
                         :
                         <button
-                            onClick={() => setShowIncompletedTask(3)}
+                            onClick={() => setShowAllTasks(3)}
                             className='mt-5 bg-blue-900 hover:bg-blue-700 px-5 py-1 rounded-lg text-white font-medium tracking-wider'
                         >
                             View Less
@@ -43,4 +38,4 @@ const IncompletedTask = () => {
     );
 };
 
-export default IncompletedTask;
+export default AllTasks;
