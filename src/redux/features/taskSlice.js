@@ -6,8 +6,12 @@ export const fetchTasks = createAsyncThunk("tasks/fetchTasks", async () => {
   return response.data;
 });
 
+const saveToLocalStorage = (data) => {
+  localStorage.setItem("tasks", JSON.stringify(data));
+};
+
 const initialState = {
-  tasks: [],
+  tasks: JSON.parse(localStorage.getItem("tasks")) || [],
   loading: false,
   error: null,
 };
@@ -24,6 +28,7 @@ export const tasksSlice = createSlice({
       .addCase(fetchTasks.fulfilled, (state, action) => {
         state.loading = false;
         state.tasks = action.payload;
+        saveToLocalStorage(action.payload);
       })
       .addCase(fetchTasks.rejected, (state, action) => {
         state.loading = false;
