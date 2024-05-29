@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  background: #f0f6ff;
+  margin: 20px 50px;
+}
+
+@layer base {
+  button {
+    @apply active:scale-90 duration-300;
+  }
+}
