@@ -2,7 +2,7 @@
     {
         "id": 2,
         "taskTitle": "Create About Page",
-        "taskDescription": "create about page in react and use tailwind",
+        "taskDescription": "In this guide, you will see exactly how to use Axios.js",
         "status": "completed",
         "deadLines": "12/08/24",
         "priority": "Low"
@@ -10,15 +10,15 @@
     {
         "id": 3,
         "taskTitle": "Create Contact Page",
-        "taskDescription": "create contact page in react and use tailwind",
-        "status": "in progress",
+        "taskDescription": "You'll see why you should use Axios as a data fetching library.",
+        "status": "in-completed",
         "deadLines": "12/08/24",
         "priority": "Low"
     },
     {
         "id": 5,
         "taskTitle": "Create Footer",
-        "taskDescription": "create footer in react and use tailwind",
+        "taskDescription": "Then we'll touch on more advanced features like creating an Axios instance for reusability, ",
         "status": "completed",
         "deadLines": "12/08/24",
         "priority": "Medium"
@@ -26,7 +26,7 @@
     {
         "id": 7,
         "taskTitle": "Create Form Page",
-        "taskDescription": "create form page in react and use tailwind",
+        "taskDescription": "It includes all of the essential information here as a convenient PDF guide.",
         "status": "completed",
         "deadLines": "12/08/24",
         "priority": "Medium"
@@ -34,7 +34,7 @@
     {
         "id": 8,
         "taskTitle": "Create Footer",
-        "taskDescription": "create footer in react and use tailwind",
+        "taskDescription": "Axios is an HTTP client library that allows you to make requests to a given endpoint:",
         "status": "completed",
         "deadLines": "12/08/24",
         "priority": "High"
@@ -42,7 +42,7 @@
     {
         "id": 9,
         "taskTitle": "Create Navbar",
-        "taskDescription": "create navbar in react and use tailwind",
+        "taskDescription": "There are a number of different libraries you can use to make these requests, so why choose Axios?",
         "status": "completed",
         "deadLines": "12/08/24",
         "priority": "High"
@@ -50,7 +50,7 @@
     {
         "id": 10,
         "taskTitle": "Create Form Page",
-        "taskDescription": "create form page in react and use tailwind",
+        "taskDescription": "It has good defaults to work with JSON data. Unlike alternatives such as the Fetch API, ",
         "status": "completed",
         "deadLines": "12/08/24",
         "priority": "Low"
@@ -58,55 +58,55 @@
     {
         "id": 11,
         "taskTitle": "Create Footer",
-        "taskDescription": "create footer in react and use tailwind",
-        "status": "in progress",
+        "taskDescription": "Axios has function names that match any HTTP methods. To perform a GET request, you use the .get() method.",
+        "status": "in-completed",
         "deadLines": "12/08/24",
         "priority": "Low"
     },
     {
         "id": 13,
         "taskTitle": "Create Navbar",
-        "taskDescription": "create navbar in react and use tailwind",
-        "status": "to do",
+        "taskDescription": "An existing React project To install Axios with npm/yarn",
+        "status": "completed",
         "deadLines": "12/08/24",
         "priority": "Low"
     },
     {
         "id": 14,
         "taskTitle": "Create Form Page",
-        "taskDescription": "create form page in react and use tailwind",
-        "status": "to do",
+        "taskDescription": "cThe quickest way to create a new React application is by going to react.new.",
+        "status": "completed",
         "deadLines": "12/08/24",
         "priority": "Medium"
     },
     {
         "id": 15,
         "taskTitle": "Create Footer",
-        "taskDescription": "create footer in react and use tailwind",
-        "status": "to do",
+        "taskDescription": "If you have an existing React project, you just need to install Axios with npm (or any other package manager):",
+        "status": "completed",
         "deadLines": "12/08/24",
         "priority": "Medium"
     },
     {
         "id": 16,
         "taskTitle": "Create Navbar",
-        "taskDescription": "create navbar in react and use tailwind",
-        "status": "to do",
+        "taskDescription": "First, you're going to make a request for individual posts.",
+        "status": "completed",
         "deadLines": "12/08/24",
         "priority": "Medium"
     },
     {
         "id": 1,
         "taskTitle": "Create Home Page",
-        "taskDescription": "create home page in react and use tailwind",
-        "status": "to do",
+        "taskDescription": "If you look at the endpoint, you are getting the first post from the /posts endpoint",
+        "status": "completed",
         "deadLines": "12/08/24",
         "priority": "High"
     },
     {
         "id": 19,
         "taskTitle": "Create Form Page",
-        "taskDescription": "create form page in react and use tailwind",
+        "taskDescription": "To perform this request when the component mounts, you use the useEffect hook.",
         "status": "completed",
         "deadLines": "12/08/24",
         "priority": "High"
@@ -114,40 +114,40 @@
     {
         "id": 21,
         "taskTitle": "Create Footer",
-        "taskDescription": "create footer in react and use tailwind",
-        "status": "in progress",
+        "taskDescription": "callback to get back all of the response data.",
+        "status": "in-completed",
         "deadLines": "12/08/24",
         "priority": "High"
     },
     {
         "id": 84,
         "taskTitle": "Create Form Page",
-        "taskDescription": "create form page in react and use tailwind",
-        "status": "to do",
+        "taskDescription": "If you look at the code below, you'll see that there's a button to create a post",
+        "status": "in-completed",
         "deadLines": "12/08/24",
         "priority": "Low"
     },
     {
         "id": 135,
         "taskTitle": "Create Footer",
-        "taskDescription": "create footer in react and use tailwind",
-        "status": "to do",
+        "taskDescription": "When you click on the button, it calls the createPost function.",
+        "status": "in-completed",
         "deadLines": "12/08/24",
         "priority": "High"
     },
     {
         "id": 136,
         "taskTitle": "Create Navbar",
-        "taskDescription": "create navbar in react and use tailwind",
-        "status": "to do",
+        "taskDescription": "Once again, use a .then() callback to get back the response data and replace the first post you got with the new post you requested.",
+        "status": "in-completed",
         "deadLines": "12/08/24",
         "priority": "Medium"
     },
     {
         "id": 31,
         "taskTitle": "Create Home Page",
-        "taskDescription": "create home page in react and use tailwind",
-        "status": "in progress",
+        "taskDescription": "This is very similar to the .get() method",
+        "status": "in-completed",
         "deadLines": "12/08/24",
         "priority": "Low"
     },
