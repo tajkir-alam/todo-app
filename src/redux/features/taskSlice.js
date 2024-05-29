@@ -8,7 +8,7 @@ export const fetchTasks = createAsyncThunk("tasks/fetchTasks", async () => {
 });
 
 const initialState = {
-  tasks: [],
+  tasks: JSON.parse(localStorage.getItem("persist:root")) || [],
   loading: false,
   error: null,
 };
