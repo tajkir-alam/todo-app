@@ -1,5 +1,5 @@
 import React from 'react';
-// import { MdOutlineEdit, MdOutlineDelete } from "react-icons/md";
+import { MdOutlineEdit, MdOutlineDelete, MdCheckCircle } from "react-icons/md";
 
 const Task = ({ id, taskTitle, taskDescription, status, deadLines, priority }) => {
     let completedButton = status === 'completed' ? true : false;
@@ -9,11 +9,11 @@ const Task = ({ id, taskTitle, taskDescription, status, deadLines, priority }) =
             <div className='flex justify-between items-center'>
                 <h5 className='text-lg font-medium tracking-widest'>{taskTitle}</h5>
                 <div className='flex items-center gap-2 text-xl'>
-                    {/* <button><MdOutlineEdit className='text-green-500' /></button>
-                    <button><MdOutlineDelete className='text-red-500' /></button> */}
+                    <button><MdOutlineEdit className='text-green-500' /></button>
+                    <button><MdOutlineDelete className='text-red-500' /></button>
                     {!completedButton &&
                         <button>
-                            {/* <MdCheckCircle className='text-blue-400' />  */}
+                            <MdCheckCircle className='text-blue-400' />
                         </button>
                     }
                 </div>
