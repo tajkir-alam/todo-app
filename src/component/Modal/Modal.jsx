@@ -69,6 +69,7 @@ const Modal = () => {
                             defaultValue={null}
                             onChange={(e) => setFieldValue('taskPriority', e.value)}
                             options={optionsPriority}
+                            isSearchable={false}
                             className='mb-5'
                         />
                         {touched.taskPriority && errors.taskPriority ? (
