@@ -1,15 +1,18 @@
 import React from 'react';
 import { MdOutlineEdit, MdOutlineDelete, MdCheckCircle } from "react-icons/md";
+import { useDispatch } from 'react-redux';
+import { openModal } from '../../redux/features/modalSlice';
 
 const Task = ({ id, taskTitle, taskDescription, status, deadLines, priority }) => {
     let completedButton = status === 'completed' ? true : false;
+    const dispatch = useDispatch();
 
     return (
         <div className='bg-[#f0f6ff] py-3 px-4 rounded-lg space-y-4'>
             <div className='flex justify-between items-center'>
                 <h5 className='text-lg font-medium tracking-widest'>{taskTitle}</h5>
                 <div className='flex items-center gap-2 text-xl'>
-                    <button><MdOutlineEdit className='text-green-500' /></button>
+                    <button onClick={() => dispatch(openModal('updateTask'))}><MdOutlineEdit className='text-green-500' /></button>
                     <button><MdOutlineDelete className='text-red-500' /></button>
                     {!completedButton &&
                         <button>

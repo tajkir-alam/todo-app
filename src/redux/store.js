@@ -11,6 +11,7 @@ const resetModalTransform = createTransform(
       return {
         ...outboundState,
         isOpen: false,
+        modalFor: '',
       };
     }
     return outboundState;
