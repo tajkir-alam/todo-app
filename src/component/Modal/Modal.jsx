@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import Select from 'react-select';
 import { closeModal } from '../../redux/features/modalSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { addTask } from '../../redux/features/taskSlice';
 
 const Modal = () => {
     const dispatch = useDispatch();
@@ -16,25 +17,30 @@ const Modal = () => {
     ];
 
     const optionsStatus = [
-        { value: 'Completed', label: 'Completed' },
-        { value: 'In-Completed', label: 'In-Completed' },
+        { value: 'completed', label: 'Completed' },
+        { value: 'in-completed', label: 'In-Completed' },
     ];
 
     const { handleSubmit, handleChange, resetForm, errors, values, touched, setFieldValue } = useFormik({
         initialValues: {
             taskTitle: '',
             taskDescription: '',
-            taskPriority: '',
-            taskStatus: '',
+            priority: '',
+            status: '',
         },
         validationSchema: Yup.object({
             taskTitle: Yup.string().required('Title is required'),
             taskDescription: Yup.string().required('Description is required'),
-            taskPriority: Yup.string().oneOf(['Low', 'Medium', 'High']).required('Please chose task priority'),
-            taskStatus: Yup.string().oneOf(['Completed', 'In-Completed']).required('Please chose task priority'),
+            priority: Yup.string().oneOf(['Low', 'Medium', 'High']).required('Please chose task priority'),
+            status: Yup.string().oneOf(['completed', 'in-completed']).required('Please chose task priority'),
         }),
         onSubmit: async (values) => {
-            console.log(values);
+            if (modalFor === 'addTask') {
+                dispatch(addTask(values));
+                console.log(values + 'from add task');
+            } else if (modalFor === 'updateTask') {
+                console.log(values + 'from update task');
+            }
         },
     });
 
@@ -69,30 +75,30 @@ const Modal = () => {
 
                 <div className="flex gap-5 mb-5">
                     <div className='w-full'>
-                        <label htmlFor="taskPriority" className='text-sm block mb-2 font-medium text-slate-800 tracking-widest'>Task Priority</label>
+                        <label htmlFor="priority" className='text-sm block mb-2 font-medium text-slate-800 tracking-widest'>Task Priority</label>
                         <Select
                             defaultValue={null}
-                            onChange={(e) => setFieldValue('taskPriority', e.value)}
+                            onChange={(e) => setFieldValue('priority', e.value)}
                             options={optionsPriority}
                             isSearchable={false}
                             className='mb-5'
                         />
-                        {touched.taskPriority && errors.taskPriority ? (
-                            <div className='text-xs text-red-600 mb-5'>{errors.taskPriority}</div>
+                        {touched.priority && errors.priority ? (
+                            <div className='text-xs text-red-600 mb-5'>{errors.priority}</div>
                         ) : null}
                     </div>
 
                     <div className='w-full'>
-                        <label htmlFor="taskStatus" className='text-sm block mb-2 font-medium text-slate-800 tracking-widest'>Task Status</label>
+                        <label htmlFor="status" className='text-sm block mb-2 font-medium text-slate-800 tracking-widest'>Task Status</label>
                         <Select
                             defaultValue={null}
-                            onChange={(e) => setFieldValue('taskStatus', e.value)}
+                            onChange={(e) => setFieldValue('status', e.value)}
                             options={optionsStatus}
                             isSearchable={false}
                             className='mb-5'
                         />
-                        {touched.taskStatus && errors.taskStatus ? (
-                            <div className='text-xs text-red-600 mb-5'>{errors.taskStatus}</div>
+                        {touched.status && errors.status ? (
+                            <div className='text-xs text-red-600 mb-5'>{errors.status}</div>
                         ) : null}
                     </div>
                 </div>
