@@ -25,7 +25,7 @@ const Task = ({ id, taskTitle, taskDescription, status, deadLines, priority }) =
             <div className='flex items-center justify-between text-sm'>
                 <p className={`${status === 'completed' ? 'bg-[#383670]' : 'bg-[#545199]'} px-5 py-1 rounded-2xl text-white capitalize`}>{status}</p>
                 <p
-                    className={`${priority === 'Low' ? 'bg-red-400' : priority === 'Medium' ? 'bg-red-600' : priority === 'High' ? 'bg-red-800' : ''} px-5 py-1 rounded-2xl text-white font-medium capitalize`}
+                    className={`${priority === 'low' ? 'bg-red-400' : priority === 'medium' ? 'bg-red-600' : priority === 'high' ? 'bg-red-800' : ''} px-5 py-1 rounded-2xl text-white font-medium capitalize`}
                 >
                     {priority}
                 </p>

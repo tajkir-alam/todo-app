@@ -8,9 +8,9 @@ const IncompletedTasks = () => {
 
     // giving value for sorting priority.
     const priorityMap = {
-        'High': 1,
-        'Medium': 2,
-        'Low': 3
+        'high': 1,
+        'medium': 2,
+        'low': 3
     };
 
     // * sorting data according the priority Higher > Medium > Low
