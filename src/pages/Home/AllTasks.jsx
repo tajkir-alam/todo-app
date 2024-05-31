@@ -16,29 +16,31 @@ const AllTasks = () => {
             </div>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-5'>
                 {
-                    tasks.slice(0, showAllTasks).map(({ id, taskTitle, taskDescription, status, deadLines, priority }) => (
+                    tasks?.slice(0, showAllTasks).map(({ id, taskTitle, taskDescription, status, deadLines, priority }) => (
                         <Task key={id} taskTitle={taskTitle} taskDescription={taskDescription} status={status} deadLines={deadLines} priority={priority} />
                     ))
                 }
             </div>
-            <div className='flex justify-end'>
-                {
-                    showAllTasks === 3 ?
-                        <button
-                            onClick={() => setShowAllTasks(tasks.length)}
-                            className='mt-5 bg-blue-900 hover:bg-blue-700 px-5 py-1 rounded-lg text-white font-medium tracking-wider'
-                        >
-                            View All
-                        </button>
-                        :
-                        <button
-                            onClick={() => setShowAllTasks(3)}
-                            className='mt-5 bg-blue-900 hover:bg-blue-700 px-5 py-1 rounded-lg text-white font-medium tracking-wider'
-                        >
-                            View Less
-                        </button>
-                }
-            </div>
+            {!(tasks.length <= 3) &&
+                <div className='flex justify-end'>
+                    {
+                        showAllTasks === 3 ?
+                            <button
+                                onClick={() => setShowAllTasks(tasks.length)}
+                                className='mt-5 bg-blue-900 hover:bg-blue-700 px-5 py-1 rounded-lg text-white font-medium tracking-wider'
+                            >
+                                View All
+                            </button>
+                            :
+                            <button
+                                onClick={() => setShowAllTasks(3)}
+                                className='mt-5 bg-blue-900 hover:bg-blue-700 px-5 py-1 rounded-lg text-white font-medium tracking-wider'
+                            >
+                                View Less
+                            </button>
+                    }
+                </div>
+            }
         </div>
     );
 };

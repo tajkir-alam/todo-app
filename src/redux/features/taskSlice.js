@@ -3,8 +3,11 @@ import axios from "axios";
 
 // Fetching Task Data
 export const fetchTasks = createAsyncThunk("tasks/fetchTasks", async () => {
-  const response = await axios.get("/mockAPI/taskData.json");
-  return response.data;
+  const response = await axios.get(
+    "https://titans-todo-app-backend.vercel.app/api/v1/tasks"
+  );
+  console.log(response.data.data);
+  return response.data.data;
 });
 
 const initialState = {
