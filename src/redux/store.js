@@ -1,7 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import tasksSlice from "./features/taskSlice";
 import storage from "redux-persist/lib/storage";
-import { createTransform, persistReducer, persistStore } from "redux-persist";
+import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, createTransform, persistReducer, persistStore } from "redux-persist";
 import modalSlice from "./features/modalSlice";
 
 const resetModalTransform = createTransform(
@@ -11,7 +11,7 @@ const resetModalTransform = createTransform(
       return {
         ...outboundState,
         isOpen: false,
-        modalFor: '',
+        modalFor: "",
       };
     }
     return outboundState;
@@ -35,6 +35,12 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {  // persis warning has been solved by using this middleware
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
 export const persistor = persistStore(store);
