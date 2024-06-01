@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchTasks } from '../../redux/features/taskSlice';
+import { useDispatch } from 'react-redux';
 import IncompletedTasks from './IncompletedTasks';
 import AllTasks from './AllTasks';
 import { openModal } from '../../redux/features/modalSlice';
 import Modal from '../../component/Modal/Modal';
+import { fetchTasks } from '../../redux/features/taskSlice';
 
 const Home = () => {
     const dispatch = useDispatch();
