@@ -12,20 +12,11 @@ const Task = ({ id, taskTitle, taskDescription, status, deadLines, priority }) =
         console.log(id);
         dispatch(deleteTask(id));
     }
-
-    // const handleCompleteTask = (id) => {
-    //     const completeTask = {
-    //         status: "completed"
-    //     }
-    //     console.log(JSON.stringify(completeTask));
-    //     dispatch(updateTask(id, completeTask))
-    // }
-
+    
     const handleCompleteTask = (id) => {
         const completeTask = {
             status: "completed"
-        }
-        console.log(JSON.stringify(completeTask));
+        };
         dispatch(updateTask({ id, taskData: completeTask }));
     }
 
