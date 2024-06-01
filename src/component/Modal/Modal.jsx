@@ -10,7 +10,6 @@ const Modal = () => {
     const dispatch = useDispatch();
     const { isOpen, modalFor } = useSelector((state) => state.modal)
     const { loading } = useSelector((state) => state.tasks);
-    console.log(loading);
 
     const optionsPriority = [
         { value: 'low', label: 'Low' },

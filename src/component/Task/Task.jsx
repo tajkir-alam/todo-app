@@ -2,7 +2,7 @@ import React from 'react';
 import { MdOutlineEdit, MdOutlineDelete, MdCheckCircle } from "react-icons/md";
 import { useDispatch } from 'react-redux';
 import { openModal } from '../../redux/features/modalSlice';
-import { deleteTask } from '../../redux/features/taskSlice';
+import { deleteTask, updateTask } from '../../redux/features/taskSlice';
 
 const Task = ({ id, taskTitle, taskDescription, status, deadLines, priority }) => {
     let completedButton = status === 'completed' ? true : false;
@@ -13,6 +13,22 @@ const Task = ({ id, taskTitle, taskDescription, status, deadLines, priority }) =
         dispatch(deleteTask(id));
     }
 
+    // const handleCompleteTask = (id) => {
+    //     const completeTask = {
+    //         status: "completed"
+    //     }
+    //     console.log(JSON.stringify(completeTask));
+    //     dispatch(updateTask(id, completeTask))
+    // }
+
+    const handleCompleteTask = (id) => {
+        const completeTask = {
+            status: "completed"
+        }
+        console.log(JSON.stringify(completeTask));
+        dispatch(updateTask({ id, taskData: completeTask }));
+    }
+
     return (
         <div className='bg-[#f0f6ff] py-3 px-4 rounded-lg space-y-4'>
             <div className='flex justify-between items-center'>
@@ -21,7 +37,7 @@ const Task = ({ id, taskTitle, taskDescription, status, deadLines, priority }) =
                     <button onClick={() => dispatch(openModal('updateTask'))}><MdOutlineEdit className='text-green-500' /></button>
                     <button onClick={() => handleDeleteTask(id)}><MdOutlineDelete className='text-red-500' /></button>
                     {!completedButton &&
-                        <button>
+                        <button onClick={() => handleCompleteTask(id)}>
                             <MdCheckCircle className='text-blue-400' />
                         </button>
                     }
