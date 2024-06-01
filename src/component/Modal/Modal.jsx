@@ -9,6 +9,8 @@ import { addNewTask } from '../../redux/features/taskSlice';
 const Modal = () => {
     const dispatch = useDispatch();
     const { isOpen, modalFor } = useSelector((state) => state.modal)
+    const { loading } = useSelector((state) => state.tasks);
+    console.log(loading);
 
     const optionsPriority = [
         { value: 'low', label: 'Low' },
@@ -123,13 +125,12 @@ const Modal = () => {
                     <div className='text-xs text-red-600 mb-5'>{errors.deadLines}</div>
                 ) : null}
 
-                {/* <p className='text-center text-sm text-red-500 mb-5'>{message}</p> */}
-
                 <button type="submit" className='relative bg-[#047CEB] text-white w-full py-3 rounded-md mb-7 active:scale-95 duration-300'>
-                    {/* {loading && */}
-                    <span className="absolute left-44 w-6 h-6 animate-[spin_1s_linear_infinite] rounded-full border-4 border-r-white border-sky-400"></span>
-                    {/* } */}
-                    {/* {loading ? 'Submitting' : 'Submit'} */} Submit
+                    {loading ?
+                        <span className="absolute right-1/2 w-6 h-6 animate-[spin_1s_linear_infinite] rounded-full border-4 border-r-white border-sky-400"></span>
+                        :
+                        'Submit'
+                    }
                 </button>
             </form>
         </div>

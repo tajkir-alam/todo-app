@@ -5,6 +5,7 @@ import AllTasks from './AllTasks';
 import { openModal } from '../../redux/features/modalSlice';
 import Modal from '../../component/Modal/Modal';
 import { fetchTasks } from '../../redux/features/taskSlice';
+import Spinner from '../../component/Spinner/Spinner';
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -30,7 +31,10 @@ const Home = () => {
                 {/* All Tasks will show via this component */}
                 <AllTasks />
             </main>
+
+            {/* global components */}
             <Modal />
+            <Spinner />
         </>
     );
 };
