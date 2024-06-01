@@ -8,7 +8,7 @@ const AllTasks = () => {
 
     return (
         <div className="bg-white rounded p-5 pt-8">
-            <div className='flex justify-between items-center px-2 mb-5'>
+            <div className='flex flex-col lg:flex-row lg:justify-between items-center text-center px-2 mb-5'>
                 <h5 className='text-center text-xl text-[#383670] font-medium tracking-wider'>All Tasks</h5>
                 <p className='text-[#383670d5] font-medium tracking-wider'>
                     You have completed <span className='text-[#383670]'>{tasks.filter(task => task.status === 'completed').length}</span> tasks from <span className='text-[#383670]'>{tasks.length}</span> tasks

@@ -43,6 +43,9 @@ const Task = ({ id, taskTitle, taskDescription, status, deadLines, priority }) =
                     {priority}
                 </p>
             </div>
+            <div>
+                
+            </div>
         </div>
     );
 };

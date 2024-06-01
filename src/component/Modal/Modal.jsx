@@ -47,7 +47,9 @@ const Modal = () => {
                     console.error('There was a problem with the fetch operation:', error);
                 }
             } else if (modalFor === 'updateTask') {
-                console.log(values + 'from update task');
+                dispatch(updateTask({ id, taskData: values }));
+                dispatch(closeModal());
+                resetForm()
             }
         },
     });
