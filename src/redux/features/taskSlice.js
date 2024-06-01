@@ -1,23 +1,28 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import axiosSecure from "../../hooks/useAxiosSecure";
 
 // Fetching Task Data
 export const fetchTasks = createAsyncThunk("tasks/fetchTasks", async () => {
-  const response = await axios.get(
-    "https://titans-todo-app-backend.vercel.app/api/v1/tasks"
-  );
-
-  return response.data.data;
+  try {
+    const response = await axiosSecure.get("/tasks");
+    return response.data.data;
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 // Adding new Task
-export const addNewTask = createAsyncThunk("tasks/addNewTask", async (task) => {
-  const response = await axios.post(
-    "https://titans-todo-app-backend.vercel.app/api/v1/tasks",
-    task
-  );
-  return response.data.data;
-});
+export const addNewTask = createAsyncThunk(
+  "tasks/addNewTask",
+  async (task, { rejectWithValue }) => {
+    try {
+      const response = await axiosSecure.post("/tasks", task);
+      return response.data.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
 
 const initialState = {
   tasks: JSON.parse(localStorage.getItem("persist:tasks")) || [],
