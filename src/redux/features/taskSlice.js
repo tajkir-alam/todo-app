@@ -6,7 +6,16 @@ export const fetchTasks = createAsyncThunk("tasks/fetchTasks", async () => {
   const response = await axios.get(
     "https://titans-todo-app-backend.vercel.app/api/v1/tasks"
   );
-  console.log(response.data.data);
+
+  return response.data.data;
+});
+
+// Adding new Task
+export const addNewTask = createAsyncThunk("tasks/addNewTask", async (task) => {
+  const response = await axios.post(
+    "https://titans-todo-app-backend.vercel.app/api/v1/tasks",
+    task
+  );
   return response.data.data;
 });
 
@@ -19,11 +28,7 @@ const initialState = {
 export const tasksSlice = createSlice({
   name: "tasks",
   initialState,
-  reducers: {
-    addTask: (state, action) => {
-      state.tasks.push(action.payload);
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchTasks.pending, (state) => {
@@ -36,9 +41,19 @@ export const tasksSlice = createSlice({
       .addCase(fetchTasks.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+      })
+      .addCase(addNewTask.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(addNewTask.fulfilled, (state, action) => {
+        state.loading = false;
+        state.tasks.push(action.payload);
+      })
+      .addCase(addNewTask.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
       });
   },
 });
 
-export const { addTask } = tasksSlice.actions;
 export default tasksSlice.reducer;

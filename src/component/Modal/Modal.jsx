@@ -4,21 +4,21 @@ import * as Yup from 'yup';
 import Select from 'react-select';
 import { closeModal } from '../../redux/features/modalSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { addTask } from '../../redux/features/taskSlice';
+import { addNewTask } from '../../redux/features/taskSlice';
 
 const Modal = () => {
     const dispatch = useDispatch();
     const { isOpen, modalFor } = useSelector((state) => state.modal)
 
     const optionsPriority = [
-        { value: 'Low', label: 'Low' },
-        { value: 'Medium', label: 'Medium' },
-        { value: 'High', label: 'High' },
+        { value: 'low', label: 'Low' },
+        { value: 'medium', label: 'Medium' },
+        { value: 'high', label: 'High' },
     ];
 
     const optionsStatus = [
-        { value: 'completed', label: 'Completed' },
-        { value: 'in-completed', label: 'In-Completed' },
+        { value: 'completed', label: 'completed' },
+        { value: 'in-completed', label: 'in-completed' },
     ];
 
     const { handleSubmit, handleChange, resetForm, errors, values, touched, setFieldValue } = useFormik({
@@ -27,17 +27,24 @@ const Modal = () => {
             taskDescription: '',
             priority: '',
             status: '',
+            deadLines: '',
         },
         validationSchema: Yup.object({
             taskTitle: Yup.string().required('Title is required'),
             taskDescription: Yup.string().required('Description is required'),
-            priority: Yup.string().oneOf(['Low', 'Medium', 'High']).required('Please chose task priority'),
+            priority: Yup.string().oneOf(['low', 'medium', 'high']).required('Please chose task priority'),
             status: Yup.string().oneOf(['completed', 'in-completed']).required('Please chose task priority'),
+            deadLines: Yup.date().required('Please select a dead-line for the task'),
         }),
         onSubmit: async (values) => {
             if (modalFor === 'addTask') {
-                dispatch(addTask(values));
-                console.log(values + 'from add task');
+                try {
+                    dispatch(addNewTask(values));
+                    dispatch(closeModal());
+                    resetForm()
+                } catch (error) {
+                    console.error('There was a problem with the fetch operation:', error);
+                }
             } else if (modalFor === 'updateTask') {
                 console.log(values + 'from update task');
             }
@@ -102,6 +109,19 @@ const Modal = () => {
                         ) : null}
                     </div>
                 </div>
+
+                <label htmlFor="deadLines" className='text-sm block mb-2 font-medium text-slate-800 tracking-widest'>Task Dead Line</label>
+                <input
+                    id='deadLines'
+                    type="date"
+                    name='deadLines'
+                    onChange={handleChange}
+                    value={values.deadLines}
+                    className='px-2 py-3 w-full border-[1px] border-[#e5e5e5] focus:border-[#047CEB] mb-5 focus:outline-none rounded'
+                />
+                {touched.deadLines && errors.deadLines ? (
+                    <div className='text-xs text-red-600 mb-5'>{errors.deadLines}</div>
+                ) : null}
 
                 {/* <p className='text-center text-sm text-red-500 mb-5'>{message}</p> */}
 
