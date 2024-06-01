@@ -24,10 +24,33 @@ export const addNewTask = createAsyncThunk(
   }
 );
 
+// Delete Task
+export const deleteTask = createAsyncThunk(
+  "tasks/deleteTask",
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await axiosSecure.delete(`/tasks/${id}`);
+      // return response.data.data;
+      return id;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
 const initialState = {
   tasks: JSON.parse(localStorage.getItem("persist:tasks")) || [],
   loading: false,
   error: null,
+};
+
+const saveStateToLocalStorage = (state) => {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem("persist:tasks", serializedState);
+  } catch (error) {
+    console.error("Could not save state", error);
+  }
 };
 
 export const tasksSlice = createSlice({
@@ -55,6 +78,19 @@ export const tasksSlice = createSlice({
         state.tasks.push(action.payload);
       })
       .addCase(addNewTask.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(deleteTask.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(deleteTask.fulfilled, (state, action) => {
+        state.loading = false;
+        const id = action.meta.arg;
+        state.tasks = state.tasks.filter((task) => task._id !== id);
+        saveStateToLocalStorage(state);
+      })
+      .addCase(deleteTask.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });

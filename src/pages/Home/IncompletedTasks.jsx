@@ -25,8 +25,8 @@ const IncompletedTasks = () => {
             <h5 className='text-center text-lg text-[#383670] font-medium tracking-wider mb-5'>In-completed Tasks</h5>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-5'>
                 {
-                    sortedTasks?.filter((task) => task.status === 'in-completed').slice(0, showIncompletedTasks).map(({ id, taskTitle, taskDescription, status, deadLines, priority }, index) => (
-                        <Task key={index} taskTitle={taskTitle} taskDescription={taskDescription} status={status} deadLines={deadLines} priority={priority} />
+                    sortedTasks?.filter((task) => task.status === 'in-completed').slice(0, showIncompletedTasks).map(({ _id, taskTitle, taskDescription, status, deadLines, priority }) => (
+                        <Task key={_id} id={_id} taskTitle={taskTitle} taskDescription={taskDescription} status={status} deadLines={deadLines} priority={priority} />
                     ))
                 }
             </div>

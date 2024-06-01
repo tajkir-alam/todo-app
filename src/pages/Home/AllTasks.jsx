@@ -16,8 +16,8 @@ const AllTasks = () => {
             </div>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-5'>
                 {
-                    tasks?.slice(0, showAllTasks).map(({ id, taskTitle, taskDescription, status, deadLines, priority }, index) => (
-                        <Task key={index} taskTitle={taskTitle} taskDescription={taskDescription} status={status} deadLines={deadLines} priority={priority} />
+                    tasks?.slice(0, showAllTasks).map(({ _id, taskTitle, taskDescription, status, deadLines, priority }) => (
+                        <Task key={_id} id={_id} taskTitle={taskTitle} taskDescription={taskDescription} status={status} deadLines={deadLines} priority={priority} />
                     ))
                 }
             </div>
