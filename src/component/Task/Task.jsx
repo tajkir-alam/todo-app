@@ -1,5 +1,5 @@
 import React from 'react';
-import { MdOutlineEdit, MdOutlineDelete, MdCheckCircle } from "react-icons/md";
+import { MdOutlineEdit, MdOutlineDelete, MdCheckCircle, MdOutlineWatchLater } from "react-icons/md";
 import { useDispatch } from 'react-redux';
 import { openModal } from '../../redux/features/modalSlice';
 import { deleteTask, updateTask } from '../../redux/features/taskSlice';
@@ -12,7 +12,7 @@ const Task = ({ id, taskTitle, taskDescription, status, deadLines, priority }) =
         console.log(id);
         dispatch(deleteTask(id));
     }
-    
+
     const handleCompleteTask = (id) => {
         const completeTask = {
             status: "completed"
@@ -43,8 +43,9 @@ const Task = ({ id, taskTitle, taskDescription, status, deadLines, priority }) =
                     {priority}
                 </p>
             </div>
-            <div>
-                
+            <div className='flex items-center gap-2'>
+                <MdOutlineWatchLater className='text-slate-500' />
+                <p className='text-sm'>{deadLines}</p>
             </div>
         </div>
     );
