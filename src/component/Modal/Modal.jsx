@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import Select from 'react-select';
 import { closeModal } from '../../redux/features/modalSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { addNewTask } from '../../redux/features/taskSlice';
+import { addNewTask, updateTask } from '../../redux/features/taskSlice';
 
 const Modal = () => {
     const dispatch = useDispatch();
@@ -47,7 +47,8 @@ const Modal = () => {
                     console.error('There was a problem with the fetch operation:', error);
                 }
             } else if (modalFor === 'updateTask') {
-                dispatch(updateTask({ id, taskData: values }));
+                const getIdFromLocalStorage = localStorage.getItem('updateTaskID');
+                dispatch(updateTask({ id: getIdFromLocalStorage, taskData: values }));
                 dispatch(closeModal());
                 resetForm()
             }

@@ -8,8 +8,12 @@ const Task = ({ id, taskTitle, taskDescription, status, deadLines, priority }) =
     let completedButton = status === 'completed' ? true : false;
     const dispatch = useDispatch();
 
+    const handleUpdateTask = (id) => {
+        dispatch(openModal('updateTask'))
+        localStorage.setItem('updateTaskID', id)
+    }
+
     const handleDeleteTask = (id) => {
-        console.log(id);
         dispatch(deleteTask(id));
     }
 
@@ -25,7 +29,7 @@ const Task = ({ id, taskTitle, taskDescription, status, deadLines, priority }) =
             <div className='flex justify-between items-center'>
                 <h5 className='text-lg font-medium tracking-widest'>{taskTitle}</h5>
                 <div className='flex items-center gap-2 text-xl'>
-                    <button onClick={() => dispatch(openModal('updateTask'))}><MdOutlineEdit className='text-green-500' /></button>
+                    <button onClick={() => handleUpdateTask(id)}><MdOutlineEdit className='text-green-500' /></button>
                     <button onClick={() => handleDeleteTask(id)}><MdOutlineDelete className='text-red-500' /></button>
                     {!completedButton &&
                         <button onClick={() => handleCompleteTask(id)}>
