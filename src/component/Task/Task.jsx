@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { openModal } from '../../redux/features/modalSlice';
 import { deleteTask, updateTask } from '../../redux/features/taskSlice';
 
-const Task = ({ id, taskTitle, taskDescription, status, deadLines, priority }) => {
+const Task = ({ id, taskTitle, taskDescription, status, deadLines, priority, createdAt, updatedAt }) => {
     let completedButton = status === 'completed' ? true : false;
     const dispatch = useDispatch();
 
@@ -52,6 +52,10 @@ const Task = ({ id, taskTitle, taskDescription, status, deadLines, priority }) =
             <div className='flex items-center gap-2'>
                 <MdOutlineWatchLater className='text-slate-500' />
                 <p className='text-sm'>{deadLines}</p>
+            </div>
+            <div className='flex items-center justify-between'>
+                <p>created: {createdAt}</p>
+                <p>updated: {updatedAt}</p>
             </div>
         </div>
     );

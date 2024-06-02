@@ -6,6 +6,16 @@ const IncompletedTasks = () => {
     const { tasks } = useSelector(state => state.tasks);
     const [showIncompletedTasks, setShowIncompletedTasks] = useState(3);
 
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = String(date.getFullYear()).slice(-2);
+
+        return `${day}/${month}/${year}`;
+    }
+
     // giving value for sorting priority.
     const priorityMap = {
         'high': 1,
@@ -25,8 +35,18 @@ const IncompletedTasks = () => {
             <h5 className='text-center text-lg text-[#383670] font-medium tracking-wider mb-5'>In-completed Tasks</h5>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-5'>
                 {
-                    sortedTasks?.filter((task) => task.status === 'in-completed').slice(0, showIncompletedTasks).map(({ _id, taskTitle, taskDescription, status, deadLines, priority }) => (
-                        <Task key={_id} id={_id} taskTitle={taskTitle} taskDescription={taskDescription} status={status} deadLines={deadLines} priority={priority} />
+                    sortedTasks?.filter((task) => task.status === 'in-completed').slice(0, showIncompletedTasks).map(({ _id, taskTitle, taskDescription, status, deadLines, priority, createdAt, updatedAt }) => (
+                        <Task
+                            key={_id}
+                            id={_id}
+                            taskTitle={taskTitle}
+                            taskDescription={taskDescription}
+                            status={status}
+                            deadLines={deadLines}
+                            priority={priority}
+                            createdAt={formatDate(createdAt)}
+                            updatedAt={formatDate(updatedAt)}
+                        />
                     ))
                 }
             </div>

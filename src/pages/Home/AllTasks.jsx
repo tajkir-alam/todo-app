@@ -6,6 +6,16 @@ const AllTasks = () => {
     const { tasks } = useSelector(state => state.tasks);
     const [showAllTasks, setShowAllTasks] = useState(3);
 
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0'); 
+        const year = String(date.getFullYear()).slice(-2);
+
+        return `${day}/${month}/${year}`;
+    }
+
     return (
         <div className="bg-white rounded p-5 pt-8">
             <div className='flex flex-col lg:flex-row lg:justify-between items-center text-center px-2 mb-5'>
@@ -16,8 +26,18 @@ const AllTasks = () => {
             </div>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-5'>
                 {
-                    tasks?.slice(0, showAllTasks).map(({ _id, taskTitle, taskDescription, status, deadLines, priority }) => (
-                        <Task key={_id} id={_id} taskTitle={taskTitle} taskDescription={taskDescription} status={status} deadLines={deadLines} priority={priority} />
+                    tasks?.slice(0, showAllTasks).map(({ _id, taskTitle, taskDescription, status, deadLines, priority, createdAt, updatedAt }) => (
+                        <Task
+                            key={_id}
+                            id={_id}
+                            taskTitle={taskTitle}
+                            taskDescription={taskDescription}
+                            status={status}
+                            deadLines={deadLines}
+                            priority={priority}
+                            createdAt={formatDate(createdAt)}
+                            updatedAt={formatDate(updatedAt)}
+                        />
                     ))
                 }
             </div>
