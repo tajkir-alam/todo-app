@@ -3,6 +3,7 @@ import { MdOutlineEdit, MdOutlineDelete, MdCheckCircle, MdOutlineWatchLater } fr
 import { useDispatch } from 'react-redux';
 import { openModal } from '../../redux/features/modalSlice';
 import { deleteTask, updateTask } from '../../redux/features/taskSlice';
+import Swal from 'sweetalert2';
 
 const Task = ({ id, taskTitle, taskDescription, status, deadLines, priority, createdAt, updatedAt }) => {
     let completedButton = status === 'completed' ? true : false;
@@ -16,14 +17,38 @@ const Task = ({ id, taskTitle, taskDescription, status, deadLines, priority, cre
     }
 
     const handleDeleteTask = (id) => {
-        dispatch(deleteTask(id));
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(deleteTask(id));
+            }
+        });
     }
 
     const handleCompleteTask = (id) => {
         const completeTask = {
             status: "completed"
         };
-        dispatch(updateTask({ id, taskData: completeTask }));
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Mark as complete"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(updateTask({ id, taskData: completeTask }));
+            }
+        });
     }
 
     return (
