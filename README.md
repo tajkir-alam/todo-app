@@ -1,8 +1,35 @@
-# React + Vite
+# Todo App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a web application for task management built with react.js, Tailwind CSS, redux, axios.
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+https://titans-todo-app-client.vercel.app
+
+The TODO Tool allows users to organize and manage tasks efficiently. It provides features such as creating tasks, adding tasks, updating tasks, make tasks complete, delete tasks.
+
+## Features
+
+- Create task
+- edit task
+- update task
+- delete task
+
+## Setup Instructions
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone <repository_url>
+npm run dev
+```
+
+# Architecture
+
+## Technologies Used
+
+- **Tailwind CSS**: Utility-first CSS framework for styling.
+- **Redux**: State management library for React.
+- **Formik**: form handler.
