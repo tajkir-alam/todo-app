@@ -110,7 +110,7 @@ export const tasksSlice = createSlice({
           state.tasks[index] = updatedTask;
         }
         saveStateToLocalStorage(state);
-        localStorage.removeItem("updateTaskID")
+        localStorage.removeItem("updateTaskInfo")
       })
       .addCase(updateTask.rejected, (state, action) => {
         state.loading = false;

@@ -22,14 +22,27 @@ const Modal = () => {
         { value: 'in-completed', label: 'in-completed' },
     ];
 
+    // getting the data which have to be update
+    const getInfoFromLocalStorage = JSON.parse(localStorage.getItem('updateTaskInfo'));
+    let initialValues = {
+        taskTitle: '',
+        taskDescription: '',
+        priority: '',
+        status: '',
+        deadLines: '',
+    };
+    if (getInfoFromLocalStorage && modalFor === 'updateTask') {
+        initialValues = {
+            taskTitle: getInfoFromLocalStorage.taskTitle || '',
+            taskDescription: getInfoFromLocalStorage.taskDescription || '',
+            status: getInfoFromLocalStorage.status || '',
+            priority: getInfoFromLocalStorage.priority || '',
+            deadLines: getInfoFromLocalStorage.deadLines || '',
+        };
+    };
+
     const { handleSubmit, handleChange, resetForm, errors, values, touched, setFieldValue } = useFormik({
-        initialValues: {
-            taskTitle: '',
-            taskDescription: '',
-            priority: '',
-            status: '',
-            deadLines: '',
-        },
+        initialValues,
         validationSchema: Yup.object({
             taskTitle: Yup.string().required('Title is required'),
             taskDescription: Yup.string().required('Description is required'),
@@ -38,6 +51,7 @@ const Modal = () => {
             deadLines: Yup.date().required('Please select a dead-line for the task'),
         }),
         onSubmit: async (values) => {
+            // Submitting form conditionally 
             if (modalFor === 'addTask') {
                 try {
                     dispatch(addNewTask(values));
@@ -47,8 +61,7 @@ const Modal = () => {
                     console.error('There was a problem with the fetch operation:', error);
                 }
             } else if (modalFor === 'updateTask') {
-                const getIdFromLocalStorage = localStorage.getItem('updateTaskID');
-                dispatch(updateTask({ id: getIdFromLocalStorage, taskData: values }));
+                dispatch(updateTask({ id: getInfoFromLocalStorage.id, taskData: values }));
                 dispatch(closeModal());
                 resetForm()
             }
@@ -65,7 +78,7 @@ const Modal = () => {
                     id='taskTitle'
                     type="text"
                     onChange={handleChange}
-                    value={values.taskTitle}
+                    defaultValue={initialValues.taskTitle}
                     className='px-2 py-3 w-full border-[1px] border-[#e5e5e5] focus:border-[#047CEB] mb-5 focus:outline-none rounded'
                 />
                 {touched.taskTitle && errors.taskTitle ? (
@@ -77,7 +90,7 @@ const Modal = () => {
                     id='taskDescription'
                     type="text"
                     onChange={handleChange}
-                    value={values.taskDescription}
+                    defaultValue={initialValues.taskDescription}
                     className='px-2 py-3 w-full border-[1px] border-[#e5e5e5] focus:border-[#047CEB] mb-5 focus:outline-none rounded'
                 />
                 {touched.taskDescription && errors.taskDescription ? (
@@ -120,7 +133,7 @@ const Modal = () => {
                     type="date"
                     name='deadLines'
                     onChange={handleChange}
-                    value={values.deadLines}
+                    defaultValue={initialValues.deadLines}
                     className='px-2 py-3 w-full border-[1px] border-[#e5e5e5] focus:border-[#047CEB] mb-5 focus:outline-none rounded'
                 />
                 {touched.deadLines && errors.deadLines ? (

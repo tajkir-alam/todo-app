@@ -9,8 +9,10 @@ const Task = ({ id, taskTitle, taskDescription, status, deadLines, priority }) =
     const dispatch = useDispatch();
 
     const handleUpdateTask = (id) => {
+        localStorage.removeItem('updateTaskInfo')
         dispatch(openModal('updateTask'))
-        localStorage.setItem('updateTaskID', id)
+        const taskInfo = { id, taskTitle, taskDescription, status, deadLines, priority }
+        localStorage.setItem('updateTaskInfo', JSON.stringify(taskInfo))
     }
 
     const handleDeleteTask = (id) => {
