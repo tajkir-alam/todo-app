@@ -31,6 +31,7 @@ export const deleteTask = createAsyncThunk("tasks/deleteTask", async (id) => {
   }
 });
 
+// Update Task
 export const updateTask = createAsyncThunk(
   "tasks/updateTask",
   async ({ id, taskData }, { rejectWithValue }) => {
@@ -105,12 +106,14 @@ export const tasksSlice = createSlice({
       .addCase(updateTask.fulfilled, (state, action) => {
         state.loading = false;
         const updatedTask = action.payload;
-        const index = state.tasks.findIndex((task) => task._id === updatedTask._id);
+        const index = state.tasks.findIndex(
+          (task) => task._id === updatedTask._id
+        );
         if (index !== -1) {
           state.tasks[index] = updatedTask;
         }
         saveStateToLocalStorage(state);
-        localStorage.removeItem("updateTaskInfo")
+        localStorage.removeItem("updateTaskInfo");
       })
       .addCase(updateTask.rejected, (state, action) => {
         state.loading = false;
