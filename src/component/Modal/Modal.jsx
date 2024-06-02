@@ -61,9 +61,13 @@ const Modal = () => {
                     console.error('There was a problem with the fetch operation:', error);
                 }
             } else if (modalFor === 'updateTask') {
-                dispatch(updateTask({ id: getInfoFromLocalStorage.id, taskData: values }));
-                dispatch(closeModal());
-                resetForm()
+                try {
+                    dispatch(updateTask({ id: getInfoFromLocalStorage.id, taskData: values }));
+                    dispatch(closeModal());
+                    resetForm()
+                } catch (error) {
+                    console.error('There was a problem with the fetch operation:', error);
+                }
             }
         },
     });
