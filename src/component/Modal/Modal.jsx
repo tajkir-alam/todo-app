@@ -80,7 +80,7 @@ const Modal = () => {
     }, [modalFor, getInfoFromLocalStorage?.priority, getInfoFromLocalStorage?.status, setValues, resetForm]);
 
     return (
-        <div onClick={() => dispatch(closeModal())} className={`fixed top-0 left-0 w-full h-full bg-[#0303037e] backdrop-blur-sm z-50 ${isOpen ? 'visible opacity-100' : 'invisible opacity-0'} duration-200`}>
+        <div onClick={() => dispatch(closeModal())} className={`fixed inset-0 w-full h-full bg-[#0303037e] backdrop-blur-sm z-50 ${isOpen ? 'visible opacity-100' : 'invisible opacity-0'} duration-200`}>
             <form onClick={(e) => e.stopPropagation()} onSubmit={handleSubmit} className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-white w-5/6 rounded-md p-5">
                 <p className='text-[26px] text-center tracking-widest mb-5'>{modalFor === 'addTask' ? 'Add' : 'Update'} Task</p>
                 <label htmlFor="taskTitle" className='text-sm block mb-2 font-medium text-slate-800 tracking-widest'>Task Title</label>
