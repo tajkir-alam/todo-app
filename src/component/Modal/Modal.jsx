@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Select from 'react-select';
@@ -35,11 +35,27 @@ const Modal = () => {
         initialValues = {
             taskTitle: getInfoFromLocalStorage.taskTitle || '',
             taskDescription: getInfoFromLocalStorage.taskDescription || '',
-            status: getInfoFromLocalStorage.status || '',
-            priority: getInfoFromLocalStorage.priority || '',
+            status: optionsStatus.find(option => option.value === getInfoFromLocalStorage?.status) || '',
+            priority: optionsPriority.find(option => option.value === getInfoFromLocalStorage?.priority) || '',
             deadLines: getInfoFromLocalStorage.deadLines || '',
         };
     };
+
+    // setting priority and status value for update task
+    const [priorityValue, setPriorityValue] = useState(optionsPriority.find(option => option.value === getInfoFromLocalStorage?.priority) || null);
+    const [statusValue, setStatusValue] = useState(optionsStatus.find(option => option.value === getInfoFromLocalStorage?.status) || null);
+
+    // rendering modal to set the value for update task and make the state null for add task
+    useEffect(() => {
+        if (modalFor === 'updateTask') {
+            setPriorityValue(optionsPriority.find(option => option.value === getInfoFromLocalStorage?.priority));
+            setStatusValue(optionsStatus.find(option => option.value === getInfoFromLocalStorage?.status));
+        }
+        else if (modalFor !== 'updateTask') {
+            setPriorityValue(null)
+            setStatusValue(null)
+        }
+    }, [modalFor, getInfoFromLocalStorage?.priority, getInfoFromLocalStorage?.status])
 
     const { handleSubmit, handleChange, resetForm, errors, values, touched, setFieldValue } = useFormik({
         initialValues,
@@ -55,16 +71,16 @@ const Modal = () => {
             if (modalFor === 'addTask') {
                 try {
                     dispatch(addNewTask(values));
-                    dispatch(closeModal());
                     resetForm()
+                    dispatch(closeModal());
                 } catch (error) {
                     console.error('There was a problem with the fetch operation:', error);
                 }
             } else if (modalFor === 'updateTask') {
                 try {
                     dispatch(updateTask({ id: getInfoFromLocalStorage.id, taskData: values }));
-                    dispatch(closeModal());
                     resetForm()
+                    dispatch(closeModal());
                 } catch (error) {
                     console.error('There was a problem with the fetch operation:', error);
                 }
@@ -105,8 +121,11 @@ const Modal = () => {
                     <div className='w-full'>
                         <label htmlFor="priority" className='text-sm block mb-2 font-medium text-slate-800 tracking-widest'>Task Priority</label>
                         <Select
-                            defaultValue={null}
-                            onChange={(e) => setFieldValue('priority', e.value)}
+                            value={priorityValue}
+                            onChange={(e) => {
+                                setFieldValue('priority', e.value)
+                                setPriorityValue(optionsPriority.find(option => option.value === e.value))
+                            }}
                             options={optionsPriority}
                             isSearchable={false}
                             className='mb-5'
@@ -119,8 +138,11 @@ const Modal = () => {
                     <div className='w-full'>
                         <label htmlFor="status" className='text-sm block mb-2 font-medium text-slate-800 tracking-widest'>Task Status</label>
                         <Select
-                            defaultValue={null}
-                            onChange={(e) => setFieldValue('status', e.value)}
+                            value={statusValue}
+                            onChange={(e) => {
+                                setFieldValue('priority', e.value)
+                                setStatusValue(optionsStatus.find(option => option.value === e.value))
+                            }}
                             options={optionsStatus}
                             isSearchable={false}
                             className='mb-5'
