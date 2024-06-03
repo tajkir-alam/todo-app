@@ -121,7 +121,7 @@ const Modal = () => {
                             className='mb-5'
                         />
                         {touched.priority && errors.priority ? (
-                            <div className='text-xs text-red-600 mb-5'>{errors.priority}</div>
+                            <div className='text-xs text-red-600'>{errors.priority}</div>
                         ) : null}
                     </div>
 
@@ -138,7 +138,7 @@ const Modal = () => {
                             className='mb-5'
                         />
                         {touched.status && errors.status ? (
-                            <div className='text-xs text-red-600 mb-5'>{errors.status}</div>
+                            <div className='text-xs text-red-600'>{errors.status}</div>
                         ) : null}
                     </div>
                 </div>

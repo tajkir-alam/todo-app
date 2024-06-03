@@ -16,6 +16,7 @@ const modalSlice = createSlice({
     closeModal: (state) => {
       state.isOpen = false;
       state.modalFor = '';
+      localStorage.removeItem('updateTaskInfo');
     },
   },
 });
