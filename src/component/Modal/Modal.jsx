@@ -10,6 +10,8 @@ const Modal = () => {
     const dispatch = useDispatch();
     const { isOpen, modalFor } = useSelector((state) => state.modal);
     const { loading } = useSelector((state) => state.tasks);
+    const [priorityValue, setPriorityValue] = useState(null);
+    const [statusValue, setStatusValue] = useState(null);
 
     const optionsPriority = [
         { value: 'low', label: 'Low' },
@@ -31,9 +33,6 @@ const Modal = () => {
         status: '',
         deadLines: '',
     };
-
-    const [priorityValue, setPriorityValue] = useState(null);
-    const [statusValue, setStatusValue] = useState(null);
 
     const formik = useFormik({
         initialValues,
