@@ -69,15 +69,10 @@ const Modal = () => {
             });
             setPriorityValue(optionsPriority.find(option => option.value === getInfoFromLocalStorage?.priority));
             setStatusValue(optionsStatus.find(option => option.value === getInfoFromLocalStorage?.status));
-            document.body.style.overflow = "hidden";    // scrollable hidden/auto on modal open/close
         } else if (modalFor === 'addTask') {
             resetForm();
             setPriorityValue(null);
             setStatusValue(null);
-            document.body.style.overflow = "hidden";    // scrollable hidden/auto on modal open/close
-        }
-        else{
-            document.body.style.overflow = "auto";      // scrollable hidden/auto on modal open/close
         }
     }, [modalFor, getInfoFromLocalStorage?.priority, getInfoFromLocalStorage?.status, setValues, resetForm]);
 
