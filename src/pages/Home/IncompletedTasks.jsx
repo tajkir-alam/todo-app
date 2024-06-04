@@ -51,7 +51,7 @@ const IncompletedTasks = () => {
                 }
             </div>
             {
-                !(tasks.filter((task) => task.status === 'in-completed').length <= 3) &&
+                !(tasks?.filter((task) => task.status === 'in-completed').length <= 3) &&
                 <div className='flex justify-end'>
                     {
                         showIncompletedTasks === 3 ?

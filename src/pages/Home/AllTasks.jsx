@@ -21,7 +21,7 @@ const AllTasks = () => {
             <div className='flex flex-col lg:flex-row lg:justify-between items-center text-center px-2 mb-5'>
                 <h5 className='text-center text-xl text-[#383670] font-medium tracking-wider'>All Tasks</h5>
                 <p className='text-[#383670d5] font-medium tracking-wider'>
-                    You have completed <span className='text-[#383670]'>{tasks.filter(task => task.status === 'completed').length}</span> tasks from <span className='text-[#383670]'>{tasks.length}</span> tasks
+                    You have completed <span className='text-[#383670]'>{tasks?.filter(task => task.status === 'completed').length}</span> tasks from <span className='text-[#383670]'>{tasks?.length}</span> tasks
                 </p>
             </div>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-5'>
@@ -41,7 +41,7 @@ const AllTasks = () => {
                     ))
                 }
             </div>
-            {!(tasks.length <= 3) &&
+            {!(tasks?.length <= 3) &&
                 <div className='flex justify-end'>
                     {
                         showAllTasks === 3 ?
