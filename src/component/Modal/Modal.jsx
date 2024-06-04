@@ -32,20 +32,18 @@ const Modal = () => {
         deadLines: '',
     };
 
-    const validationSchema = Yup.object({
-        taskTitle: modalFor === 'addTask' ? Yup.string().required('Title is required') : Yup.string(),
-        taskDescription: modalFor === 'addTask' ? Yup.string().required('Description is required') : Yup.string(),
-        priority: modalFor === 'addTask' ? Yup.string().oneOf(['low', 'medium', 'high']).required('Please choose task priority') : Yup.string().oneOf(['low', 'medium', 'high']),
-        status: modalFor === 'addTask' ? Yup.string().oneOf(['completed', 'in-completed']).required('Please choose task status') : Yup.string().oneOf(['completed', 'in-completed']),
-        deadLines: modalFor === 'addTask' ? Yup.date().required('Please select a deadline for the task') : Yup.date(),
-    });
-
     const [priorityValue, setPriorityValue] = useState(null);
     const [statusValue, setStatusValue] = useState(null);
 
     const formik = useFormik({
         initialValues,
-        validationSchema,
+        validationSchema: Yup.object({
+            taskTitle: Yup.string().required('Title is required'),
+            taskDescription: Yup.string().required('Description is required'),
+            priority: Yup.string().oneOf(['low', 'medium', 'high']).required('Please chose task priority'),
+            status: Yup.string().oneOf(['completed', 'in-completed']).required('Please chose task priority'),
+            deadLines: Yup.date().required('Please select a dead-line for the task'),
+        }),
         onSubmit: async (values) => {
             if (modalFor === 'addTask') {
                 dispatch(addNewTask(values));
