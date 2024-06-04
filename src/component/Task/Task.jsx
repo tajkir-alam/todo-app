@@ -10,11 +10,12 @@ const Task = ({ id, taskTitle, taskDescription, status, deadLines, priority, cre
     const dispatch = useDispatch();
 
     const handleShowTask = () => {
+        document.body.style.overflow = "hidden";    // overflow hidden for bg scroll for modal open
         Swal.fire({
             title: `<strong>${taskTitle}</strong>`,
             html: `
-            <div class="text-left space-y-2">
-                <p class=""><span class="font-medium">Description:</span> ${taskDescription}</p>
+            <div class="text-left space-y-3">
+                <p><span class="font-medium">Description:</span> ${taskDescription}</p>
                 <p><span class="font-medium">Status:</span> ${status}</p>
                 <p><span class="font-medium">Priority:</span> ${priority}</p>
                 <p><span class="font-medium">Deadline:</span> ${deadLines}</p>
@@ -33,6 +34,7 @@ const Task = ({ id, taskTitle, taskDescription, status, deadLines, priority, cre
     }
 
     const handleDeleteTask = (id) => {
+        document.body.style.overflow = "hidden";    // overflow hidden for bg scroll for modal open
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -49,6 +51,7 @@ const Task = ({ id, taskTitle, taskDescription, status, deadLines, priority, cre
     }
 
     const handleCompleteTask = (id) => {
+        document.body.style.overflow = "hidden";    // overflow hidden for bg scroll for modal open
         const completeTask = {
             status: "completed"
         };
